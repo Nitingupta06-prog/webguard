@@ -2,6 +2,14 @@
 
 WebGuard is a full-stack web application for running lightweight vulnerability checks against a target URL, storing scan history in MongoDB Atlas, and exporting results as a PDF report.
 
+## Screenshots
+
+### Home
+![Home](screenshots/home.png)
+
+### Scan Results
+![Results](screenshots/results.png)
+
 ## Features
 
 - Port scan with a limited range for faster, safer analysis

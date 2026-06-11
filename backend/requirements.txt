@@ -1,0 +1,9 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+pymongo==4.8.0
+python-nmap==0.7.1
+python-whois==0.9.5
+reportlab==4.2.2
+requests==2.32.3
+pydantic==2.9.2
+python-dotenv==1.0.1

@@ -2,6 +2,10 @@
 
 WebGuard is a full-stack web application for running lightweight vulnerability checks against a target URL, storing scan history in MongoDB Atlas, and exporting results as a PDF report.
 
+## 🔗 Live Demo
+- **Frontend:** https://webguard-iota.vercel.app
+- **Backend API:** https://webguard-z4xc.onrender.com/docs
+
 ## Screenshots
 
 ### Home

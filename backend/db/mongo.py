@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 import os
 from functools import lru_cache
 from typing import Any
-
 from bson import ObjectId
 from pymongo import MongoClient, DESCENDING
-
 
 @lru_cache(maxsize=1)
 def get_collection():
@@ -17,14 +14,13 @@ def get_collection():
     client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
     return client[database_name]["scans"]
 
-
 async def save_scan(document: dict[str, Any]) -> str:
     collection = get_collection()
     if collection is None:
         return "local"
-    result = collection.insert_one(document)
+    doc_to_insert = dict(document)
+    result = collection.insert_one(doc_to_insert)
     return str(result.inserted_id)
-
 
 async def fetch_history(limit: int = 20) -> list[dict[str, Any]]:
     collection = get_collection()
@@ -32,7 +28,6 @@ async def fetch_history(limit: int = 20) -> list[dict[str, Any]]:
         return []
     records = collection.find().sort("timestamp", DESCENDING).limit(limit)
     return [_serialize(record) for record in records]
-
 
 async def fetch_scan_by_id(scan_id: str) -> dict[str, Any] | None:
     collection = get_collection()
@@ -43,7 +38,6 @@ async def fetch_scan_by_id(scan_id: str) -> dict[str, Any] | None:
         return _serialize(record) if record else None
     except Exception:
         return collection.find_one({"_id": scan_id})
-
 
 def _serialize(record: dict[str, Any] | None) -> dict[str, Any]:
     if not record:
